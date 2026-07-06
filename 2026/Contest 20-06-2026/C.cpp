@@ -16,19 +16,26 @@ int main(){
     int t;
     cin >> t;
     while (t--){
-        ll n, x, aux, total = 0;
-        vector<ll> v(n);
+        ll n, x;
         cin >> n >> x;
+        vector<ll> v(n);
         
         forn(i, n){
-            cin >> aux;
-            total += aux;
+            cin >> v[i];
         }
 
-        ll abajo = 1, arriba = ((total + x)/ n) + 1;
-        
-        while (abajo != (arriba + 1)){
-            
+        ll abajo = 1, arriba = 1e10;
+        ll suma;
+        while (abajo != (arriba - 1)){
+            ll medio = (abajo+arriba)/2;
+            suma = 0;
+            forn(i, n){
+                if (v[i] < medio) suma += medio - v[i];
+            }
+            cout << "Arriba: " << arriba << "   Abajo: " << abajo << "  Medio: " << medio << "  Suma: " << suma << "\n";
+            if (suma > x) arriba = medio;
+            else abajo = medio;
         }
+        cout << abajo << "\n";
     }
 }
