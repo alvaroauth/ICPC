@@ -14,7 +14,12 @@ typedef long long ll;
 int main(){
     ll n; cin >> n;
     set<ll> st;
+
+    ll num;
     forn(i, n){
-        
+        cin >> num;
+        st.insert(num);
     }
+
+    cout << st.size() << "\n";
 }
