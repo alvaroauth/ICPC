@@ -12,12 +12,41 @@ typedef long long ll;
 #define esta(x,c) ((c).find(x) != (c).end())
 
 const ll MAXN = 1e6 + 5;
-vector<vector<ll>> dp(MAXN, vector<ll>(6, 0));
+const ll MOD = 1e9 + 7;
+vector<vector<ll>> dp(7, vector<ll>(6, 0));
 
-ll aumentar_rango(){
-    
+void aumentar_rango(ll num, ll i){
+    forn(j, 6){
+        if (((i*6)+(j+1)) <= num)
+            dp[i][j] = dp[i-1][j] * 6;
+        else if ((num - ((i*6)+(j+1))) > 0)
+            dp[i][j] = dp[i-1][j] * (num - ((i*6)+(j+1)));
+        else
+            dp[i][j] = dp[i-1][j];
+    }
 }
 
 int main(){
+    ll n; cin >> n;
 
+    ll aux = (n >= 6)? 6 : n;
+
+    forn(i, aux){
+        dp[0][i] = 1;
+    }
+    forr(i, aux, 6){
+        dp[0][i] = 0;
+    }
+
+    forr(i, 1, n+1){
+        aumentar_rango(n, i);
+    }
+
+    ll suma = 0;
+    forn(i, 6){
+        suma += dp[n][i];
+    }
+
+    cout << suma << "\n";
+    return 0;
 }
