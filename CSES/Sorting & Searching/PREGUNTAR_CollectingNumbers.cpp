@@ -12,21 +12,21 @@ typedef long long ll;
 #define esta(x,c) ((c).find(x) != (c).end())
 
 int main(){
-    ll n, aux, cont = 0; cin >> n;
+    ll n; cin >> n;
 
-    set<ll> nums;
+    vector<ll> v(n);
+    forn(i, n) cin >> v[i];
 
-    forn(i, n){
-        cin >> aux;
-        auto it = nums.upper_bound(-aux);
-        
-        if (it != nums.end()){
-            nums.erase(it);
-        }
-        else{
+    ll max = -(2e5 + 7);
+    ll cont = 0;
+    ll a = n-1;
+    while (v[a] != 1) a--;
+
+    for(int i = a; i >= 0; i--){
+        if (v[i] > max){
+            max = v[i];
             cont++;
         }
-        nums.insert(-aux);
     }
     cout << cont << "\n";
     return 0;
