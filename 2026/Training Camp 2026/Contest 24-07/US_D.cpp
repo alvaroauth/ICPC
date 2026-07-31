@@ -32,7 +32,7 @@ int main(){
 		
 		contador[0] = 0;
 		for(int i = 1; i <= n; i++){
-			if (izq[i-1] == 1)
+			if (izq[i-1] == 1) 
 				contador[i] = contador[i-1] + 1;
 			else
 				contador[i] = contador[i-1] - 1;
