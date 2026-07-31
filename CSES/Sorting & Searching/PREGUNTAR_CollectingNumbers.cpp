@@ -15,6 +15,27 @@ int main(){
     ll n; cin >> n;
 
     vector<ll> v(n);
+    map<ll ,ll> m;
+
+    forn(i, n){
+        cin >> v[i];
+        m[v[i]] = i;
+    }
+    ll cont = 1;
+    ll actual = m[1];
+    for(auto [clave, valor] : m){
+        if(valor < actual ){
+            cont ++;
+        }
+        actual = valor;
+    }
+    cout << cont << "\n";
+}
+
+/*
+    ll n; cin >> n;
+
+    vector<ll> v(n);
     forn(i, n) cin >> v[i];
 
     ll max = -(2e5 + 7);
@@ -30,4 +51,4 @@ int main(){
     }
     cout << cont << "\n";
     return 0;
-}
+*/
