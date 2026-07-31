@@ -1,18 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+ 
 #define FIN ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 typedef long long ll;
 typedef long double ld;
 #define forr(i,a,b) for(int i = int(a); i < int(b); i++)
 #define forn(i,n) forr(i,0,n)
-
+ 
 bool mismaCantidad(map<char, ll> uno, map<char, ll> dos){
     for(auto par : uno)
         if (uno[par.first] != dos[par.first]) return false;
     return true;
 }
-
+ 
 int main(){
     ll t; cin >> t;
     while (t--){

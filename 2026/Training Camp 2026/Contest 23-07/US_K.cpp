@@ -1,14 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#ifdef LOCAL
-#define DBG(x) cout << #x << " = " << (x) << endl
-#define RAYA cerr << "===============================" << endl
-#else
-#define DBG(x)
-#define RAYA
-#endif
-
 typedef long long ll;
 typedef vector<ll> vi; typedef pair<ll,ll> ii;
 typedef vector<ii> vii; typedef vector<bool> vb;
