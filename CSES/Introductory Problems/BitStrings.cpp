@@ -14,6 +14,12 @@ typedef long long ll;
 const ll MOD = 1e9 + 7;
 int main(){
     ll n; cin >> n;
-    ll resul = (ll)pow(2, n) % MOD;
-    cout << resul << "\n";
+    vector<ll> dp(n+1);
+
+    dp[0] = 1;
+    forr(i, 1, n+1){
+        dp[i] = ((dp[i-1] % MOD) * 2) % MOD; 
+    }
+
+    cout << dp[n];
 }

@@ -32,15 +32,10 @@ int main(){
 	forn(i, n-1){
 		int a, b; cin >> a >> b;
 		a--;b--;
-        if ((find(ady[a].begin(), ady[a].end(), b)) != ady[a].end()){
-            ll mi = min(a, b), ma = max(a, b);
-			aristas.insert({mi, ma});
-        }
-        else{
-            ady[b].push_back(a);
-            ady[a].push_back(b);
-        }
-	}
+        ady[b].push_back(a);
+        ady[a].push_back(b);
+    }
+	
 	
 	forn(i, n){
 		if (!visto[i]){
@@ -52,8 +47,6 @@ int main(){
 	auto sig = it;
 	sig++;
 	auto it2 = aristas.begin();
-	//~ cout << aristas.size() << endl;
-	//~ for(auto i : aristas) cout << i.first+1 << " " << i.second+1 << endl;
 	cout << comp.size()-1 << "\n";
 	while(sig != comp.end()){
 		cout << ((it2->first)+1) << " " << ((it2->second)+1) << " " << ((*it)+1) << " " << ((*sig)+1) << "\n";

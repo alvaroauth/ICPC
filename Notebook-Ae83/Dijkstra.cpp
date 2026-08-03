@@ -15,6 +15,7 @@ vector<ll> Dijkstra(int start, int n) {
 	vector<ll> dist(n, INF);
 	priority_queue<pair<ll,ll>, vector<pair<ll,ll>>, greater<pair<ll,ll>>> pq;
 	pq.push({0, start});
+	
 	while(!pq.empty()) {
 		auto [d, cur] = pq.top(); pq.pop();
 		if(dist[cur] != INF) continue;
