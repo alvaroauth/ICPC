@@ -11,42 +11,30 @@ typedef long long ll;
 #define all(c) (c).begin(),(c).end()
 #define esta(x,c) ((c).find(x) != (c).end())
 
-const ll MAXN = 1e6 + 5;
 const ll MOD = 1e9 + 7;
-vector<vector<ll>> dp(7, vector<ll>(6, 0));
 
-void aumentar_rango(ll num, ll i){
-    forn(j, 6){
-        if (((i*6)+(j+1)) <= num)
-            dp[i][j] = dp[i-1][j] * 6;
-        else if ((num - ((i*6)+(j+1))) > 0)
-            dp[i][j] = dp[i-1][j] * (num - ((i*6)+(j+1)));
-        else
-            dp[i][j] = dp[i-1][j];
-    }
+void aumentarRango(vector<ll> &v, int i){
+    v.push_back((v[i-1] + v[i-2] + v[i-3] + v[i-4] + v[i-5] + v[i-6]) % MOD);
+}
+
+void inicializar(vector<ll> &v){
+    v[0] = 0;
+    v[1] = 1;
+    v[2] = 2;
+    v[3] = 4;
+    v[4] = 8;
+    v[5] = 16;
+    v[6] = 32;
 }
 
 int main(){
     ll n; cin >> n;
 
-    ll aux = (n >= 6)? 6 : n;
-
-    forn(i, aux){
-        dp[0][i] = 1;
-    }
-    forr(i, aux, 6){
-        dp[0][i] = 0;
+    vector<ll> v(7);
+    inicializar(v);
+    forr(i, 7, n+1){
+        aumentarRango(v, i);
     }
 
-    forr(i, 1, n+1){
-        aumentar_rango(n, i);
-    }
-
-    ll suma = 0;
-    forn(i, 6){
-        suma += dp[n][i];
-    }
-
-    cout << suma << "\n";
-    return 0;
+    cout << v[n] << "\n";
 }
