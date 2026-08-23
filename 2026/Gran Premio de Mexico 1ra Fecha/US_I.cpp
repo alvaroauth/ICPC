@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+ 
 typedef long long ll;
 #define FIN ios::sync_with_stdio(0);cin.tie(0);cout.tie(0)
 #define forr(i, a, b) for(ll i = (a); i < (ll) (b); i++)
@@ -12,28 +12,5 @@ typedef long long ll;
 #define esta(x,c) ((c).find(x) != (c).end())
 
 int main(){
-    FIN;
-    ll n; cin >> n;
-    vector<ll> entradas, salidas;
-    vector<pair<ll, ll>> desocupo;
-
-    ll a, b;
-    forn(i, n){
-        cin >> a >> b;
-        entradas.pb(a);
-        salidas.pb(b);
-    }
-
-    stack<ll> disp;
-
-    for(int i = n; i > 0; i--){
-        disp.push(i);
-    }
-
-    forn(i, n){
-        
-    }
-
     
-
 }

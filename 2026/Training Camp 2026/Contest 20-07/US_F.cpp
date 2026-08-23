@@ -17,10 +17,7 @@ int main(){
         ll n, g, b; cin >> n >> g >> b;
 
         ll techo = ((n+1)/2);
-        if (((g/b)*n) >= techo) cout << n << "\n";
-        else{
-            ll res = ((techo/g) + (((techo)/g) * b));
-            cout << res << "\n";
-        }
+        ll res = (techo + (b * ((techo-1)/g)));
+        cout << max(res, n) << "\n"; 
     }
 }

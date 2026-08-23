@@ -12,28 +12,13 @@ typedef long long ll;
 #define esta(x,c) ((c).find(x) != (c).end())
 
 int main(){
-    FIN;
-    ll n; cin >> n;
-    vector<ll> entradas, salidas;
-    vector<pair<ll, ll>> desocupo;
+    ll w, h, n;
+    cin >> w >> h >> n;
 
-    ll a, b;
-    forn(i, n){
-        cin >> a >> b;
-        entradas.pb(a);
-        salidas.pb(b);
-    }
-
-    stack<ll> disp;
-
-    for(int i = n; i > 0; i--){
-        disp.push(i);
-    }
-
-    forn(i, n){
-        
-    }
-
-    
-
+    // ll l = 0, r = 2e18;
+    // ll necesario = w * h * n;
+    // while(l != r - 1){
+    //     ll med = (l+r)/2;
+    //     if ()
+    // }
 }

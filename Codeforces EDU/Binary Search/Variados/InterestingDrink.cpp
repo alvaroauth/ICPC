@@ -12,28 +12,21 @@ typedef long long ll;
 #define esta(x,c) ((c).find(x) != (c).end())
 
 int main(){
-    FIN;
     ll n; cin >> n;
-    vector<ll> entradas, salidas;
-    vector<pair<ll, ll>> desocupo;
+    vector<ll> precios(n);
+    forn(i, n) cin >> precios[i];
+    sort(all(precios));
 
-    ll a, b;
-    forn(i, n){
-        cin >> a >> b;
-        entradas.pb(a);
-        salidas.pb(b);
+    ll q; cin >> q;
+    ll x, l, r, med;
+    forn(i, q){
+        cin >> x;
+        l = -1; r = n;
+        while (l != r - 1){
+            med = (l+r) / 2;
+            if (precios[med] > x) r = med;
+            else l = med;
+        }
+        cout << r << "\n";
     }
-
-    stack<ll> disp;
-
-    for(int i = n; i > 0; i--){
-        disp.push(i);
-    }
-
-    forn(i, n){
-        
-    }
-
-    
-
 }

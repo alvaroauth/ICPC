@@ -11,18 +11,23 @@ typedef long long ll;
 #define all(c) (c).begin(),(c).end()
 #define esta(x,c) ((c).find(x) != (c).end())
 
+ll dist(pair<ll, ll> p){
+    return llabs(p.first - p.second);
+}
+
 int main(){
-    ll x, n; cin >> x >> n;
+    // ll x, n, pos; cin >> x >> n;
+    
+    // multiset<pair<ll, pair<ll, ll>>> ms;
+    // pair<ll, ll> maxi = {0, x};
+    // ms.insert({0, 8});
 
-    multiset<ll> ms;
-    ll aux;
+    // forn(i, n){
+    //     cin >> pos;
+    //     auto calle = ms.lower_bound({pos, -1});
+    //     auto seg1 = {pos, calle->first};
+    //     auto seg2 = {calle->second, pos};
 
-    cin >> aux;
-    ms.insert(aux);
-
-    forn(i, n-1){
-        cin >> aux;
         
-    }
-    cout << ms.size() << "\n";
+    // }
 }

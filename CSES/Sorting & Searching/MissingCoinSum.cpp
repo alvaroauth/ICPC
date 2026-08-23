@@ -13,11 +13,19 @@ typedef long long ll;
 
 int main(){
     ll n; cin >> n;
-    vector<ll> vec;
-    vector<bool> puedo;
-    ll aux;
+    vector<ll> monedas(n);
+    forn(i, n) cin >> monedas[i];
+
+    sort(all(monedas));
+
+    ll puedo = 1;
+    ll res = -1;
+
     forn(i, n){
-        cin >> aux;
+        if (monedas[i] > puedo) res = puedo;
+        if (res != -1) break;
+        puedo += monedas[i];
     }
-    
+    if (res == -1) res = puedo;
+    cout << res << "\n";
 }
