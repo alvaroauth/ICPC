@@ -14,26 +14,51 @@ typedef long long ll;
 int main(){
     FIN;
     ll n; cin >> n;
-    vector<ll> entradas, salidas;
-    vector<pair<ll, ll>> desocupo;
+    queue<ll> proxima;
+    multiset<pair<ll, ll>> ocupadas;
+    multiset<ll> disponibles;
+
+    vector<pair<pair<ll, ll>, ll>> enysal(n);
+    vector<ll> res(n);
 
     ll a, b;
     forn(i, n){
         cin >> a >> b;
-        entradas.pb(a);
-        salidas.pb(b);
+        enysal[i] = mp(mp(a, b),i);
     }
 
-    stack<ll> disp;
+    sort(all(enysal));
 
-    for(int i = n; i > 0; i--){
-        disp.push(i);
-    }
-
+    forn(i, n) proxima.push(i+1);
+    ll max = 0;
     forn(i, n){
+        auto es = enysal[i];
         
+        auto it = ocupadas.begin();
+        while ((it != ocupadas.end()) and (it->first < es.first.first)){
+            disponibles.insert(it->second);
+            auto aux = it;
+            it++;
+            ocupadas.erase(aux);
+        }
+
+        if (disponibles.size() == 0){
+            max++;
+            ll prox = proxima.front(); proxima.pop();
+            ocupadas.insert({es.first.second, prox});
+            res[es.second] = prox;
+        }
+        else{
+            ll prox = *(disponibles.begin());
+            ocupadas.insert({es.first.second, prox});
+            disponibles.erase(disponibles.begin());
+            res[es.second] = prox;
+        }
     }
 
-    
-
+    cout << max << "\n";
+    forn(i, res.size()){
+        cout << res[i] << " ";
+    }
+    cout << "\n";
 }
