@@ -17,9 +17,8 @@ int main(){
     while(t--){
         ll a, b; cin >> a >> b;
         bool puedo = true;
-        if (a == b && a%2==0 && a!=0) puedo = false;
-        ll dif = llabs(a-b);
-        if (dif > max(a,b)/2) puedo = false;
+        if ((a > (2*b)) or (b > (2 * a))) puedo = false;
+        if ((a + b) % 3 != 0) puedo = false;
         
         if (puedo) cout << "YES\n";
         else cout << "NO\n";
