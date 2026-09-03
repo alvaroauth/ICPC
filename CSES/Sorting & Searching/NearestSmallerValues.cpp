@@ -11,10 +11,21 @@ typedef long long ll;
 #define all(c) (c).begin(),(c).end()
 #define esta(x,c) ((c).find(x) != (c).end())
 
-ll dist(pair<ll, ll> p){
-    return llabs(p.first - p.second);
-}
-
 int main(){
-    
+    ll n; cin >> n;
+    vector<ll> v(n);
+
+    forn(i, n) cin >> v[i];
+    stack<ll> indices;
+
+    forn(i, n){
+        while ((indices.size() > 0) and (v[indices.top()] >= v[i])) indices.pop();
+
+        if (indices.size() == 0) cout << "0 ";
+        else cout << (indices.top() + 1) << " ";
+        
+        indices.push(i);
+    }
+
+    cout << "\n";
 }

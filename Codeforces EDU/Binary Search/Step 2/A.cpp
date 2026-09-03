@@ -11,14 +11,31 @@ typedef long long ll;
 #define all(c) (c).begin(),(c).end()
 #define esta(x,c) ((c).find(x) != (c).end())
 
+
 int main(){
     ll w, h, n;
     cin >> w >> h >> n;
 
-    // ll l = 0, r = 2e18;
-    // ll necesario = w * h * n;
-    // while(l != r - 1){
-    //     ll med = (l+r)/2;
-    //     if ()
-    // }
+    ll l = 0, r = 1e18;
+    while (l+1 < r){
+        ll med = (l+r)/2;
+        ll ancho = med/w;
+        ll alto = med/h;
+        if((ancho >= n) and (alto >=1)){
+            r = med;
+        }
+        else if((alto >= n) and (ancho >=1)){
+            r = med;
+        }
+        else{
+            ll mult = ancho * alto;
+            if(mult >= n){
+                r = med;
+            }
+            else{
+                l = med;
+            }
+        }
+    }
+    cout << r << "\n";  
 }

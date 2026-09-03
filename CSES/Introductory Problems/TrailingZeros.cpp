@@ -11,10 +11,23 @@ typedef long long ll;
 #define all(c) (c).begin(),(c).end()
 #define esta(x,c) ((c).find(x) != (c).end())
 
-ll dist(pair<ll, ll> p){
-    return llabs(p.first - p.second);
+void calcularPotencias(vector<ll> &p, ll n){
+    ll num = 5;
+    while (num <= n){
+        p.pb(num);
+        num *= 5;
+    }
 }
 
 int main(){
-    
+    ll n; cin >> n;
+    vector<ll> pot5;
+    calcularPotencias(pot5, n);
+
+    ll cont = 0;
+    for(auto p: pot5){
+        cont += n / p;
+    }
+
+    cout << cont << "\n";
 }

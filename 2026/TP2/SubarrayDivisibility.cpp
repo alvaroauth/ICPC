@@ -11,10 +11,18 @@ typedef long long ll;
 #define all(c) (c).begin(),(c).end()
 #define esta(x,c) ((c).find(x) != (c).end())
 
-ll dist(pair<ll, ll> p){
-    return llabs(p.first - p.second);
-}
-
 int main(){
-    
+    ll n; cin >> n;
+    vector<ll> pref(n+1);
+    map<ll, ll> diferencia;
+    pref[0] = 0;
+
+    ll aux;
+    forn(i, n){
+        cin >> aux;
+        pref[i+1] = (pref[i] + (aux % n)) % n;
+        diferencia[pref[i+1]] = i;
+    }
+
+
 }

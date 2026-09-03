@@ -14,21 +14,27 @@ typedef long long ll;
 int main(){
     ll n; cin >> n;
     ll gauss = ((n*(n+1))/2);
-    cout << gauss << endl;  
     if (n == 1 || (gauss % 2) != 0) cout << "NO\n";
     else{
         cout << "YES\n";
-        ll pri = 1, ult = n;
+        ll sum = 0;
+        vector<bool> v(n+1, false);
         set<ll> uno, dos;
 
-        while (ult > pri + 1){
-            uno.insert(pri++); uno.insert(ult--);
-            dos.insert(pri++); dos.insert(ult--);
+        for(int i = n; i > 0; i--){
+            if (sum + i <= gauss/2){
+                uno.insert(i);
+                v[i] = true;
+                sum += i;
+            }
         }
-
+        forr(i, 1, n+1) if (!v[i]) dos.insert(i);
+        
         cout << uno.size() << "\n";
-        for(auto e: uno) cout << e << " ";
-        cout << "\n" << dos.size() << "\n";
-        for(auto e: dos) cout << e << " ";
+        for(auto i: uno) cout << i << " ";
+        cout << "\n";
+        cout << dos.size() << "\n";
+        for(auto i: dos) cout << i << " ";
+        cout << "\n";
     }
 }
