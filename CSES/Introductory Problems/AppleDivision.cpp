@@ -9,7 +9,7 @@ typedef long long ll;
 #define pb push_back
 #define mp make_pair
 #define all(c) (c).begin(),(c).end()
-#define esta(x,c) ((c).find(x) != (c).end())
+#define esta(x,c) ((c).find(x) != (c).end())S
 
 vector<ll> v;
 
@@ -18,7 +18,7 @@ ll dfs(ll i, ll sum, ll mitad, ll n){
     ll maxi = -1;
     maxi = max(maxi, dfs(i + 1, sum, mitad, n));
     if ((sum + v[i]) <= mitad) maxi = max(maxi, dfs(i + 1, sum + v[i], mitad, n));
-    return maxi;
+    return maxi;    
 }
 
 

@@ -1,39 +1,53 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-#define FIN ios::sync_with_stdio(0);cin.tie(0);cout.tie(0)
-#define forr(i, a, b) for(ll i = (a); i < (ll) (b); i++)
-#define forn(i, n) forr(i, 0, n)
-#define SZ(x) int((x).size())
+typedef long long ll;
 #define pb push_back
 #define mp make_pair
-#define all(c) (c).begin(),(c).end()
-#define esta(x,c) ((c).find(x) != (c).end())
-typedef long long ll;
+#define forr(a,b) for(ll i = (ll)(a); i < (ll)(b); i++)
+#define forn(n) forr(0,n)
+#define L(x) x*2
+#define R(x) x*2+1
+#define FIN ios::sync_with_stdio(0); cin.tie;
+const int MAXN = 1<<19;
+const ll MOD = 1e9 + 7;
+const ll NEUT = 0;
 
-struct segtree {
-  vector <ll> t; int tam;
-  ll NEUT = 0; // Neutral element of operation
-  ll op(ll a, ll b){ return a+b; } // Operation to make
-   
-  void build(vector<ll>v, int n) {  // build the tree 
-    // root en 1, ojas en el intervalo [tam, 2*tam-1]
-    tam = sizeof(int) * 8 - __builtin_clz(n); tam = 1<<tam;
-    t.resize(2*tam,NEUT); forn(i, n) t[tam+i] = v[i];
-    for(int i = tam - 1; i > 0; i--) t[i] = op(t[i<<1], t[i<<1|1]);
-  }
+vector<ll> tree(2*MAXN, NEUT);
 
-  void update(int p, ll value) {  // set value at position p
-    for (t[p += tam] = value; p > 1; p >>= 1) t[p>>1] = op(t[p], t[p^1]);
-    //Tener cuidado aca, podria ser que en cosas no conmutativas, para p impar: p > p^1.
-  }
+ll op(ll a, ll b){
+	return a + b;
+}
 
-  ll query(int l, int r) {  // op on interval [l, r]
-    ll res = NEUT;
-    for (l += tam, r += tam; l <= r; l >>= 1, r >>= 1) {
-      if (l&1) res = op(res, t[l++]);
-      if (!(r&1)) res = op(res, t[r--]);
-    }
-    return res;
-  }
-};
+void build(vector<ll> &v, int node = 1, int l = 0, int r = MAXN-1){
+	if(l == r){
+		tree[node] = v[l];
+		return;
+	}
+	int mid = (l+r)/2;
+	build(v, L(node),l,mid);
+	build(v,R(node),mid+1,r);
+	tree[node] = op(tree[L(node)],tree[R(node)]);
+	return;
+}
+
+void update(int k, ll u, int node = 1, int l = 0, int r = MAXN-1){
+	if(l == r){
+		tree[node] = u;
+		return;
+	}
+	int mid = (l+r)/2;
+	if(k>= l && k <= mid){
+		update(k,u,L(node),l,mid);
+	} else {
+		update(k,u,R(node),mid+1,r);
+	}
+	tree[node] = op(tree[L(node)],tree[R(node)]);
+	return;
+}
+
+ll querie(int a, int b, int node = 1, int l = 0, int r = MAXN-1){
+	if(r<a || l>b) return NEUT;
+	if(l>=a && r<=b) return tree[node];
+	int mid = (l+r)/2;
+	return op(querie(a,b,L(node),l,mid),querie(a,b,R(node),mid+1,r));
+}

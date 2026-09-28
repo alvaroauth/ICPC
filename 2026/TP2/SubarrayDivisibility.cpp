@@ -11,18 +11,32 @@ typedef long long ll;
 #define all(c) (c).begin(),(c).end()
 #define esta(x,c) ((c).find(x) != (c).end())
 
+ll negapos(ll n, ll num){
+    if (num < 0){
+        ll aux = num / n;
+        aux--; aux *= -1;
+        num += (aux)*n;
+    }
+    return num;
+}
+
 int main(){
     ll n; cin >> n;
     vector<ll> pref(n+1);
-    map<ll, ll> diferencia;
+    vector<ll> encontre(n+1, 0);
     pref[0] = 0;
 
     ll aux;
     forn(i, n){
         cin >> aux;
-        pref[i+1] = (pref[i] + (aux % n)) % n;
-        diferencia[pref[i+1]] = i;
+        pref[i+1] = (pref[i] + (negapos(n, aux) % n)) % n;
     }
 
+    ll cont = 0;
+    forn(i, n+1){
+        cont += encontre[pref[i]];
+        encontre[pref[i]]++;
+    }
 
+    cout << cont << "\n";
 }
