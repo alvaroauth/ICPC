@@ -23,6 +23,6 @@ int main(){
 
     forn(i, m){
         ll a, b, w; cin >> a >> b >> w;
-        
+
     }
 }

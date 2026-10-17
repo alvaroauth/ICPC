@@ -14,28 +14,25 @@ const int INF = 1<<30; // const ll INF = (1LL<<60);
 const int MOD = 1e9+7;  // const int MOD = 998244353;
 const int MAXN  = 2e5+5;
 
-vector<ll> padre, sz;
+struct DSU {
+    vector<ll> link, sz, maxi, mini;
 
-void initDSU(int tam) {
-    padre.assign(tam+5, 0);
-    sz.assign(tam+5, 1);
-    forn(i, tam+5) padre[i] = i;
-}
+    DSU(int tam) { // 0 indexado
+        link.resize(tam+5), sz.resize(tam+5);
+        maxi.resize(tam+5); mini.resize(tam+5);
+        forn(i, tam+5) link[i] = i, sz[i] = 1, maxi[i] = i, mini[i] = i;
+    }
 
-ll find(ll x){
-    return padre[x] = (padre[x] == x ? x : find(padre[x])); 
-}
+    ll find(ll x){ return link[x] = (link[x] == x ? x : find(link[x])); }
+    bool same(ll a, ll b) { return find(a) == find(b); }
 
-bool same(ll a, ll b) {
-     return find(a) == find(b); 
-}
-
-void join(ll a, ll b) {
-    a = find(a), b = find(b);
-    if(a == b) return;
-    if(sz[a] < sz[b]) swap(a, b);
-    sz[a] += sz[b];
-    padre[b] = a;
-}
-
-
+    void join(ll a, ll b) {
+        a = find(a), b = find(b);
+        if(a == b) return;
+        if(sz[a] < sz[b]) swap(a,b);
+        sz[a] += sz[b];
+        maxi[a] = max(maxi[a],maxi[b]);
+        mini[a] = min(mini[a],mini[b]);
+        link[b] = a;
+    }
+};
